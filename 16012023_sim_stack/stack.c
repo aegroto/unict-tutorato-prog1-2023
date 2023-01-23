@@ -1,5 +1,11 @@
 #include "stack.h"
 
+stack_t init() {
+    stack_t stack;
+    stack.top = NULL;
+    return stack;
+}
+
 void push(stack_t* stack, char value) {
     node_t* new_node = malloc(sizeof(node_t));
     new_node->value = value;
@@ -24,4 +30,14 @@ char pop(stack_t* stack) {
     free(popped_node);
 
     return value_to_pop;
+}
+void print_stack(stack_t* stack){
+    node_t *cursor = stack->top;
+    printf("[");
+    while(cursor != NULL) {
+        char value = cursor->value;
+        printf("%c (%d) | ", value, value);
+        cursor = cursor->next;
+    }
+    printf("]\n");
 }
